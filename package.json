@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/Vitancourt/treinaweb-nodejs-completo/issues"
   },
-  "homepage": "https://github.com/Vitancourt/treinaweb-nodejs-completo#readme"
+  "homepage": "https://github.com/Vitancourt/treinaweb-nodejs-completo#readme",
+  "dependencies": {
+    "socket.io": "^2.3.0"
+  }
 }
