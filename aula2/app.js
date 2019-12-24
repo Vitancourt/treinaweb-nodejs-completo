@@ -1,1 +1,0 @@
-var promise = require('promise');
