@@ -6,4 +6,4 @@ var Cachorro = {
     }
 }
 
-module.exports Cachorro;
+module.exports = Cachorro;
