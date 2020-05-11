@@ -13,7 +13,8 @@ app.set('view engine', 'jade');
 
 app.route('/mongo')
     .get((req, res) => {
-        listarCursos(res);
+        
+        console.log(listarCursos(res));
     })
     .post((req, res) => {
         var curso = {nome: req.body.nome, categoria: req.body.categoria};
@@ -38,18 +39,21 @@ app.get(/((sh)|(x))amp(o{2}|u)/, (req, resp) => {
 
 app.listen(8000);
 
-function listarCursos(res) {
-    MongoClient.connect('mongodb://localhost:27017/treinaweb', (err, db) => {
-        db.collection('cursos').find().sort({nome: 1}).toArray((err, result) => {
-            resp.render('index', {data:result});
+function listarCursos(resp){
+    MongoClient.connect('mongodb://localhost:27017', { useNewUrlParser: true }, function(err, db){
+        db.collection('cursos').find().sort({nome: 1}).toArray(function(err, result){
+            resp.render('index', {data: result});
         })
-    });
-}
+    })
+ }
 
-function inserirCurso(ojb, callback) {
-    MongoClient.connect('monbodb://localhost:27017/treinaweb', (err, db) => {
-        db.collection('cursos').insertOne(obj, (err, result) => {
-            callback();
-        }) 
-    });
+function inserirCurso(obj, callback) {
+    MongoClient.connect('mongodb://localhost:27017/', function(err, db) {
+        if (err) throw err;
+        db.collection('cursos').insert(obj, function(err, res) {
+        if (err) throw err;
+            console.log('Number of records inserted: ' + res.insertedCount);
+            db.close();  
+        });  
+    });  
 }
