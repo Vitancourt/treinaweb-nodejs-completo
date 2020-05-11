@@ -1,0 +1,28 @@
+html
+    head
+        title Curso
+    body
+    each val in data
+        li
+            div= val.nome
+            div= val.categoria
+            br
+    br
+    br
+    form(action="/mongo" method="post")
+        label Nome:
+        input(
+            type="text"
+            name="nome"
+            required
+        )
+        label Categoria:
+        select(name="categoria" required)
+            option Back-end
+            option Desenvolvimento de jogos
+            option Front-end
+            option Mobile
+        input(
+            type="submit"
+            value="enviar"
+        )
